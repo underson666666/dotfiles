@@ -19,7 +19,7 @@ call plug#begin('~/.vim/autoload')
   " ファイルタイプに応じたコメントアウト
   Plug 'tyru/caw.vim'
   " 自動で括弧を閉じる
-  "Plug 'mattn/vim-lexiv'
+  "Plug 'mattn/vim-lexiv'   " このプラグインはバグがあった2020/09/10
   Plug 'jiangmiao/auto-pairs'
   " 自作チートシートを開く :Cheat
   Plug 'reireias/vim-cheatsheet'
@@ -42,7 +42,7 @@ let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_popup_delay = 200
+let g:asyncomplete_popup_delay = 350
 
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
