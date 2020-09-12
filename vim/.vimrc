@@ -26,19 +26,23 @@ call plug#begin('~/.vim/autoload')
   " ファイル検索
   Plug 'ctrlpvim/ctrlp.vim'
 
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
+  " Language Server
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
   Plug 'mattn/vim-lsp-icons'
 "
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 " source ~/.vim/autoload/insertdate/plugin/insertdate.vim
 
+" Language Server
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_popup_delay = 500
+let g:asyncomplete_popup_delay = 200
 
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
@@ -55,14 +59,24 @@ colorscheme molokai
 set t_Co=256
 
 
-set nu
-set nowrap
-
 "" basic setting
+" 文字コード自動判別
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+
+" 改行コード自動判別
+set fileformats=unix,dos,mac
+" 改行コード可視化
+set nolist
+
 " incremental search
 set incsearch
 " high list hit letters
 set hlsearch
+
+set nu
+set nowrap
+set ff=unix " 改行コード dos/mac/unix
 
 " indent
 set expandtab " タブ入力を複数の空白入力に置き変える
@@ -82,7 +96,10 @@ set splitright
 set noequalalways
 
 " status line
-highlight StatusLine guifg=white guibg=#4e4e4e
+set laststatus=2    " always show statusline
+" highlight StatusLine guifg=white guibg=#4e4e4e
+highlight StatusLine guifg=black guibg=#ffffff
+set statusline=%f\ %m\ %r\ %w\ %q%=%l/%Lrow\ %ccol\ %P\ [%{(&fenc!=''?&fenc:&enc)}]\ [%{&tabstop}\ spaces]\ [%{&ff}]\ [%{&syntax}]
 
 " 前回ファイルを閉じた時の位置を記憶する(だったと思う)
 augroup vimrcEx
@@ -105,3 +122,10 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'
 " Cheat Sheet file path
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 let g:cheatsheet#vsplit = 1
+
+" Automatically open cwindow after run vimgrep
+augroup AutoQuickfix
+    autocmd!
+    autocmd QuickFixCmdPost *grep* cwindow
+augroup END
+
