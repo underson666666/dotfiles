@@ -1,3 +1,7 @@
+" vim settings file split
+runtime! userautoload/basic/*.vim
+runtime! userautoload/plugins/*.vim
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/autoload')
 "
@@ -6,6 +10,7 @@ call plug#begin('~/.vim/autoload')
   " カラーテーマ
   Plug 'tomasr/molokai'
   Plug 'haishanh/night-owl.vim'
+  Plug 'tomasiser/vim-code-dark'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
   " vimのwindowのリサイズ
@@ -25,20 +30,19 @@ call plug#begin('~/.vim/autoload')
   Plug 'reireias/vim-cheatsheet'
   " ファイル検索
   Plug 'ctrlpvim/ctrlp.vim'
+  " バッファにあるファイルをシュッっと実行
+  Plug 'thinca/vim-quickrun'
 
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
+  " Language Server
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
   Plug 'mattn/vim-lsp-icons'
 "
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 " source ~/.vim/autoload/insertdate/plugin/insertdate.vim
-
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_popup_delay = 500
 
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
@@ -49,40 +53,11 @@ endif
 syntax on
 
 "" colortheme setting
-colorscheme molokai
-" colorscheme codedark
+" colorscheme molokai
+colorscheme codedark
 " colorscheme night-owl
 set t_Co=256
 
-
-set nu
-set nowrap
-
-"" basic setting
-" incremental search
-set incsearch
-" high list hit letters
-set hlsearch
-
-" indent
-set expandtab " タブ入力を複数の空白入力に置き変える
-set tabstop=4 " 画面上でタブ文字が占める幅
-set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent " 改行時に前の行のインデントを継承する
-set smarttab " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=4 " smartindentで増減する幅
-
-" cursor
-set cursorline
-
-" new window position
-set splitbelow
-set splitright
-" disable window size adjustment
-set noequalalways
-
-" status line
-highlight StatusLine guifg=white guibg=#4e4e4e
 
 " 前回ファイルを閉じた時の位置を記憶する(だったと思う)
 augroup vimrcEx
@@ -105,3 +80,11 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'
 " Cheat Sheet file path
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 let g:cheatsheet#vsplit = 1
+
+" Automatically open cwindow after run vimgrep
+augroup AutoQuickfix
+    autocmd!
+    autocmd QuickFixCmdPost *grep* cwindow
+augroup END
+
+
