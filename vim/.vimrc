@@ -1,3 +1,7 @@
+" vim settings file split
+runtime! userautoload/basic/*.vim
+runtime! userautoload/plugins/*.vim
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/autoload')
 "
@@ -6,6 +10,7 @@ call plug#begin('~/.vim/autoload')
   " カラーテーマ
   Plug 'tomasr/molokai'
   Plug 'haishanh/night-owl.vim'
+  Plug 'tomasiser/vim-code-dark'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
   " vimのwindowのリサイズ
@@ -25,6 +30,8 @@ call plug#begin('~/.vim/autoload')
   Plug 'reireias/vim-cheatsheet'
   " ファイル検索
   Plug 'ctrlpvim/ctrlp.vim'
+  " バッファにあるファイルをシュッっと実行
+  Plug 'thinca/vim-quickrun'
 
   " Language Server
   Plug 'prabirshrestha/asyncomplete.vim'
@@ -53,8 +60,8 @@ endif
 syntax on
 
 "" colortheme setting
-colorscheme molokai
-" colorscheme codedark
+" colorscheme molokai
+colorscheme codedark
 " colorscheme night-owl
 set t_Co=256
 
