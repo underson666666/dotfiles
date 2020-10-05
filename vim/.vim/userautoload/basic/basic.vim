@@ -1,10 +1,14 @@
 "" basic setting
+" syntax
+syntax on
+
 " 文字コード自動判別
 set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 
 " 改行コード自動判別
 set fileformats=unix,dos,mac
+" set ff=unix " $B2~9T%3!<%I(B dos/mac/unix
 " 改行コード可視化
 set nolist
 
@@ -15,15 +19,6 @@ set hlsearch
 
 set nu
 set nowrap
-set ff=unix " $B2~9T%3!<%I(B dos/mac/unix
-
-" indent
-set expandtab " タブ入力を複数の空白入力に置き変える
-set tabstop=4 " 画面上でタブ文字が占める幅
-set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent " 改行時に前の行のインデントを継承する
-set smarttab " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=4 " smartindentで増減する幅
 
 " cursor
 set cursorline
@@ -34,4 +29,19 @@ set splitright
 " disable window size adjustment
 set noequalalways
 
+" swap file path
+" You must exec this command `mkdir -p ~/.vim/swap`
+set directory=~/.vim/swap
+
+" undo file
+" Run this command `mkdir -p ~/.vim/undo`, otherwise undofiles will not be created.
+set undodir=~/.vim/undo
+set undofile
+
+
+" 前回ファイルを閉じた時の位置を記憶する(だったと思う)
+augroup vimrcEx
+      au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ exe "normal g`\"" | endif
+augroup END
 

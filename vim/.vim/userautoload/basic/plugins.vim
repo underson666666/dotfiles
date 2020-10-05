@@ -1,0 +1,41 @@
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/autoload')
+"
+" " Declare the list of plugins.
+
+  " カラーテーマ
+  Plug 'tomasr/molokai'
+  Plug 'haishanh/night-owl.vim'
+  Plug 'tomasiser/vim-code-dark'
+  " CSVを見やすくする
+  Plug 'mechatroner/rainbow_csv'
+  " vimのwindowのリサイズ
+  Plug 'simeji/winresizer'
+  " undo tree
+  Plug 'mbbill/undotree'
+  " 日付をインサートする
+  Plug 'underson666666/vim-insertdate'
+  " 自動でHTMLタグを閉じる
+  Plug 'alvan/vim-closetag'
+  " ファイルタイプに応じたコメントアウト
+  Plug 'tyru/caw.vim'
+  " 自動で括弧を閉じる
+  "Plug 'mattn/vim-lexiv'   " このプラグインはバグがあった2020/09/10
+  Plug 'jiangmiao/auto-pairs'
+  " 自作チートシートを開く :Cheat
+  Plug 'reireias/vim-cheatsheet'
+  " ファイル検索
+  Plug 'ctrlpvim/ctrlp.vim'
+  " バッファにあるファイルをシュッっと実行
+  Plug 'thinca/vim-quickrun'
+
+  " Language Server
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'mattn/vim-lsp-icons'
+"
+" " List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
