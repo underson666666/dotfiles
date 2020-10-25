@@ -1,3 +1,8 @@
+" 100番代 Vim全体に関わる設定
+" 200番代 Vim全体に関わるプラグインの設定
+" 300番代 ファイルタイプごとの設定
+" 400番代 アプリケーション,プラグインの設定
+"
 "" basic setting
 " syntax
 syntax on
@@ -5,6 +10,7 @@ syntax on
 " 文字コード自動判別
 set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+" set fileencodings=utf-8
 
 " 改行コード自動判別
 set fileformats=unix,dos,mac

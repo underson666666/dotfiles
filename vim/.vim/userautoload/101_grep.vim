@@ -4,4 +4,3 @@ augroup AutoQuickfix
     autocmd QuickFixCmdPost *grep* cwindow
 augroup END
 
-
