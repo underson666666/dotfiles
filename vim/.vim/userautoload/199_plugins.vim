@@ -39,3 +39,5 @@ call plug#begin('~/.vim/autoload')
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
+filetype plugin on
+runtime macros/matachit.vim
