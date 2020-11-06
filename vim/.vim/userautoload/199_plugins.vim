@@ -40,4 +40,4 @@ call plug#begin('~/.vim/autoload')
 call plug#end()
 
 filetype plugin on
-runtime macros/matachit.vim
+runtime macros/matchit.vim
