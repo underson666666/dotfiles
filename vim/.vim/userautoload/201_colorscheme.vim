@@ -5,7 +5,9 @@ endif
 
 "" colortheme setting
 " colorscheme molokai
-colorscheme codedark
+if filereadable( expand("$HOME/.vim/autoload/molokai/colors/molokai.vim") )
+    colorscheme codedark
+endif
 " colorscheme night-owl
 set t_Co=256
 
