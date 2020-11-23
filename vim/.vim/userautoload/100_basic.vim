@@ -35,6 +35,8 @@ set splitright
 " disable window size adjustment
 set noequalalways
 
+set wildmenu
+
 " swap file path
 " You must exec this command `mkdir -p ~/.vim/swap`
 set directory=~/.vim/swap
