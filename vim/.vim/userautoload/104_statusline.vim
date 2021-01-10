@@ -8,4 +8,5 @@ else
     let repfileformat = 'unknown'
 endif
 
-set statusline=%f\ %m\ %r\ %w\ %q%=%l/%Lrow\ %ccol\ %P\ [%{(&fenc!=''?&fenc:&enc)}]\ [%{&tabstop}\ spaces]\ [%{repfileformat}]\ [%{&syntax}]
+" set statusline=%f\ %m\ %r\ %w\ %q%=%l/%Lrow\ %ccol\ %P\ [%{(&fenc!=''?&fenc:&enc)}]\ [%{&tabstop}\ spaces]\ [%{repfileformat}]\ [%{&syntax}]
+set statusline=%f\ %m\ %r\ %w\ %q%=%l/%Lrow\ %ccol\ %P\ [enc:%{&enc}]\ [fenc:%{&fenc}]\ [line:%{repfileformat}]\ [%{&tabstop}\ %{(&expandtab?'spaces':'tabs')}]\ [%{&syntax}]

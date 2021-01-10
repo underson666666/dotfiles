@@ -28,6 +28,10 @@ call plug#begin('~/.vim/autoload')
   Plug 'ctrlpvim/ctrlp.vim'
   " バッファにあるファイルをシュッっと実行
   Plug 'thinca/vim-quickrun'
+  " 
+  Plug 'tpope/vim-surround'
+  " テーブル整形
+  Plug 'dhruvasagar/vim-table-mode'
 
   " Language Server
   Plug 'prabirshrestha/asyncomplete.vim'
