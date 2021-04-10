@@ -1,11 +1,11 @@
+" This use plugin manager, [Vim-Plug](https://github.com/junegunn/vim-plug)
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/autoload')
-"
 " " Declare the list of plugins.
 
   " カラーテーマ
   Plug 'tomasr/molokai'
-  Plug 'haishanh/night-owl.vim'
+  " Plug 'haishanh/night-owl.vim'
   Plug 'tomasiser/vim-code-dark'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
@@ -17,6 +17,8 @@ call plug#begin('~/.vim/autoload')
   Plug 'underson666666/vim-insertdate'
   " 自動でHTMLタグを閉じる
   Plug 'alvan/vim-closetag'
+  " HTML入力効率化
+  Plug 'mattn/emmet-vim'
   " ファイルタイプに応じたコメントアウト
   Plug 'tyru/caw.vim'
   " 自動で括弧を閉じる
@@ -32,6 +34,13 @@ call plug#begin('~/.vim/autoload')
   Plug 'tpope/vim-surround'
   " テーブル整形
   Plug 'dhruvasagar/vim-table-mode'
+  " 複数の文字列を検索してハイライト
+  Plug 't9md/vim-quickhl'
+
+  " plantuml syntax
+  " Plug 'aklt/plantuml-syntax'
+  " Ansible syntax
+  " Plug 'pearofducks/ansible-vim'
 
   " Language Server
   Plug 'prabirshrestha/asyncomplete.vim'

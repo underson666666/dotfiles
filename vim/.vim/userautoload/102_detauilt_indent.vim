@@ -1,5 +1,4 @@
 " defualt indent
-" See Alos 197_filetypes.vim
 set expandtab " タブ入力を複数の空白入力に置き変える
 set tabstop=4 " 画面上でタブ文字が占める幅
 set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
