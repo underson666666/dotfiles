@@ -42,6 +42,9 @@ call plug#begin('~/.vim/autoload')
   " Ansible syntax
   " Plug 'pearofducks/ansible-vim'
 
+  " Git関連プラグイン
+  Plug 'airblade/vim-gitgutter'
+
   " Language Server
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
