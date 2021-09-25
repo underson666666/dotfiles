@@ -45,6 +45,11 @@ call plug#begin('~/.vim/autoload')
   " Git関連プラグイン
   Plug 'airblade/vim-gitgutter'
 
+  " ファイルツリー
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/nerdfont.vim'
+  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+
   " Language Server
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
