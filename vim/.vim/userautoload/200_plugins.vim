@@ -5,7 +5,7 @@ call plug#begin('~/.vim/autoload')
 
   " カラーテーマ
   Plug 'tomasr/molokai'
-  " Plug 'haishanh/night-owl.vim'
+  Plug 'haishanh/night-owl.vim'
   Plug 'tomasiser/vim-code-dark'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
