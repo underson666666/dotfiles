@@ -7,6 +7,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'tomasr/molokai'
   Plug 'haishanh/night-owl.vim'
   Plug 'tomasiser/vim-code-dark'
+  Plug 'cormacrelf/vim-colors-github'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
   " vimのwindowのリサイズ
