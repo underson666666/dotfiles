@@ -8,6 +8,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'haishanh/night-owl.vim'
   Plug 'tomasiser/vim-code-dark'
   Plug 'cormacrelf/vim-colors-github'
+  Plug 'underson666666/color-scheme-switcher-over-time'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
   " vimのwindowのリサイズ
