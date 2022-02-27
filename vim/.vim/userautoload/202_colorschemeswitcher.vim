@@ -18,7 +18,6 @@ set t_Co=256
 " color_scheme_switcher
 let g:color_scheme_switcher#colors = { "0": "night-owl", "08": "github", "17": "github", "18:30": "night-owl"}
 let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "light", "17": "dark", "18:30": "dark"}
-let g:color_scheme_switcher#interval = 1000 * 5
 
 if has('vim_starting')
     call color_scheme_switcher#StartColorSchemeSwitcher()
