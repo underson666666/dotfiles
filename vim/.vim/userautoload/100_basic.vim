@@ -4,8 +4,8 @@ syntax on
 
 " 文字コード自動判別
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-" set fileencodings=utf-8
+" set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
 
 " 改行コード自動判別
 set fileformats=unix,dos,mac
@@ -28,7 +28,7 @@ set cursorline
 set splitbelow
 set splitright
 " disable window size adjustment
-set noequalalways
+set equalalways
 
 set wildmenu
 
