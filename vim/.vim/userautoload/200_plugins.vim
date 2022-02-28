@@ -8,6 +8,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'haishanh/night-owl.vim'
   Plug 'tomasiser/vim-code-dark'
   Plug 'cormacrelf/vim-colors-github'
+  Plug 'yasukotelin/shirotelin'
   Plug 'underson666666/color-scheme-switcher-over-time'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
@@ -58,6 +59,9 @@ call plug#begin('~/.vim/autoload')
   Plug 'prabirshrestha/vim-lsp'
   Plug 'mattn/vim-lsp-settings'
   Plug 'mattn/vim-lsp-icons'
+
+  " 非同期な各言語でリント実行ツール
+  Plug 'dense-analysis/ale'
 "
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
