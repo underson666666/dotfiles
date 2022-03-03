@@ -38,6 +38,8 @@ call plug#begin('~/.vim/autoload')
   Plug 'dhruvasagar/vim-table-mode'
   " 複数の文字列を検索してハイライト
   Plug 't9md/vim-quickhl'
+  " 単語の固有文字をハイライト
+  Plug 'unblevable/quick-scope'
 
   " plantuml syntax
   " Plug 'aklt/plantuml-syntax'
