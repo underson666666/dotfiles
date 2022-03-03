@@ -9,6 +9,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'tomasiser/vim-code-dark'
   Plug 'cormacrelf/vim-colors-github'
   Plug 'yasukotelin/shirotelin'
+  Plug 'sainnhe/edge'
   Plug 'underson666666/color-scheme-switcher-over-time'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
@@ -16,8 +17,6 @@ call plug#begin('~/.vim/autoload')
   Plug 'simeji/winresizer'
   " undo tree
   Plug 'mbbill/undotree'
-  " 日付をインサートする
-  Plug 'underson666666/vim-insertdate'
   " 自動でHTMLタグを閉じる
   Plug 'alvan/vim-closetag'
   " HTML入力効率化
@@ -62,6 +61,10 @@ call plug#begin('~/.vim/autoload')
 
   " 非同期な各言語でリント実行ツール
   Plug 'dense-analysis/ale'
+
+  " statusline
+  Plug 'itchyny/lightline.vim'
+  Plug 'itchyny/vim-gitbranch'
 "
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

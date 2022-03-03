@@ -32,12 +32,18 @@ set equalalways
 
 set wildmenu
 
-" swap file path
-" You must exec this command `mkdir -p ~/.vim/swap`
+" swap and undo
+function! CreateRequiredDirs() abort
+    let l:unkos = ["/.vim/", "/.vim/undo", "/.vim/swap"]
+    for l:unko in l:unkos
+        let l:d =  expand("$HOME") . l:unko
+        if isdirectory(l:d) == 0
+            call mkdir(l:d)
+        endif
+    endfor
+endfunction
+call CreateRequiredDirs()
 set directory=~/.vim/swap
-
-" undo file
-" Run this command `mkdir -p ~/.vim/undo`, otherwise undofiles will not be created.
 set undodir=~/.vim/undo
 set undofile
 
