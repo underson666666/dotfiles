@@ -32,7 +32,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'ctrlpvim/ctrlp.vim'
   " バッファにあるファイルをシュッっと実行
   Plug 'thinca/vim-quickrun'
-  " 
+  " 括弧で囲ったり囲っている文字を変更
   Plug 'tpope/vim-surround'
   " テーブル整形
   Plug 'dhruvasagar/vim-table-mode'
@@ -67,6 +67,9 @@ call plug#begin('~/.vim/autoload')
   " statusline
   Plug 'itchyny/lightline.vim'
   Plug 'itchyny/vim-gitbranch'
+
+  " grep結果などを一括置換
+  Plug 'thinca/vim-qfreplace'
 "
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
