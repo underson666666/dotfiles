@@ -10,6 +10,9 @@ endfunction
 function! LineCounter() abort
     return "E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['0']}/I:%{ale#statusline#Count(bufnr('%'))['0']}"
 endfunction
+function! CustomSyntax() abort
+    return "%{&syntax}"
+endfunction
 
 let g:lightline = {
     \     'colorscheme': 'edge',
@@ -21,13 +24,15 @@ let g:lightline = {
     \                ],
     \        'right': [ [ 'lineinfo' ],
     \                   [ 'percent' ] ,
-    \                   [ 'customExpand', 'fileencoding', 'customFf', 'filetype' ]
+    "\                   [ 'customExpand', 'fileencoding', 'customFf', 'filetype', 'customSyntax' ]
+    \                   [ 'customExpand', 'fileencoding', 'customFf', 'customSyntax' ]
     \                 ],
     \      },
     \      'component': {
     \         'gitBranch': gitbranch#name(),
     \         'customFf': CustomFf(),
     \         'customExpand': CustomExpand(),
+    \         'customSyntax': CustomSyntax(),
     \         'lineCounter': LineCounter(),
     \      },
     \ }
