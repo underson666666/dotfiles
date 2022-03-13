@@ -10,6 +10,8 @@ call plug#begin('~/.vim/autoload')
   Plug 'cormacrelf/vim-colors-github'
   Plug 'yasukotelin/shirotelin'
   Plug 'sainnhe/edge'
+  Plug 'sainnhe/everforest'
+  Plug 'cocopon/iceberg.vim'
   Plug 'underson666666/color-scheme-switcher-over-time'
   " CSVを見やすくする
   Plug 'mechatroner/rainbow_csv'
