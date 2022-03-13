@@ -70,7 +70,11 @@ call plug#begin('~/.vim/autoload')
 
   " grep結果などを一括置換
   Plug 'thinca/vim-qfreplace'
-"
+  " 選択範囲の文字列を検索
+  Plug 'thinca/vim-visualstar'
+  " テキストオブジェクトの強化
+  Plug 'wellle/targets.vim'
+
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
