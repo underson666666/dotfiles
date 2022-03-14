@@ -8,7 +8,8 @@ function! CustomFf() abort
     return "%{dic_line[&ff]}"
 endfunction
 function! LineCounter() abort
-    return "E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['0']}/I:%{ale#statusline#Count(bufnr('%'))['0']}"
+    " 0がerror+style_error, 1がwarning+style_warning と思われる
+    return "E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['1']}/I:%{ale#statusline#Count(bufnr('%'))['info']}"
 endfunction
 function! CustomSyntax() abort
     return "%{&syntax}"
@@ -24,7 +25,6 @@ let g:lightline = {
     \                ],
     \        'right': [ [ 'lineinfo' ],
     \                   [ 'percent' ] ,
-    "\                   [ 'customExpand', 'fileencoding', 'customFf', 'filetype', 'customSyntax' ]
     \                   [ 'customExpand', 'fileencoding', 'customFf', 'customSyntax' ]
     \                 ],
     \      },
