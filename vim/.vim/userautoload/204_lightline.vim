@@ -14,6 +14,12 @@ endfunction
 function! CustomSyntax() abort
     return "%{&syntax}"
 endfunction
+function! CustomGitBranch() abort
+    if !exists(":gitbranch#name()")
+        return "%{gitbranch#name()}"
+    else
+        return ""
+endfunction
 
 let g:lightline = {
     \     'colorscheme': 'edge',
@@ -29,7 +35,7 @@ let g:lightline = {
     \                 ],
     \      },
     \      'component': {
-    \         'gitBranch': gitbranch#name(),
+    \         'gitBranch': CustomGitBranch(),
     \         'customFf': CustomFf(),
     \         'customExpand': CustomExpand(),
     \         'customSyntax': CustomSyntax(),
