@@ -1,1 +1,16 @@
-eval $(dircolors -b ~/.dircolors)
+
+# additional settings
+alias vi='vim'
+alias view='vim -R'
+alias flake8='flake8 --statistics'
+
+# WSL
+if [[ "$(uname -r)" == *microsoft* ]]; then
+    alias cmd='explorere.exe'
+fi
+
+HISTTIMEFORMAT='%F %T '
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+# eval $(dircolors -b ~/.dircolors)
