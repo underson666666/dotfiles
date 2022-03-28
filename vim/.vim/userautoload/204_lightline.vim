@@ -19,6 +19,7 @@ function! CustomGitBranch() abort
         return "%{gitbranch#name()}"
     else
         return ""
+    endif
 endfunction
 
 let g:lightline = {
