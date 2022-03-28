@@ -1,5 +1,34 @@
-set noshowmode
+" Cheat Sheet file path
+let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
+let g:cheatsheet#vsplit = 1
 
+" [Github  dhruvasagar/vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
+let g:table_mode_corner='|'
+
+" Auto close tag work file type
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'
+
+let g:fern#renderer = 'nerdfont'
+
+" colorscheme
+let g:everforest_background = 'hard'
+" color_scheme_switcher
+let g:color_scheme_switcher#colors = { "0": "night-owl", "08": "everforest", "17": "github", "18:30": "night-owl"}
+let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "light", "17": "dark", "18:30": "dark"}
+if has('vim_starting')
+    call color_scheme_switcher#StartColorSchemeSwitcher()
+endif
+
+" Language Server
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 1
+let g:asyncomplete_popup_delay = 500
+let g:lsp_log_verbose = 0
+
+" lightline
+set noshowmode
 function! CustomExpand() abort
     return "%{&tabstop}\%{(&expandtab?'sp':'tb')}"
 endfunction
@@ -43,3 +72,10 @@ let g:lightline = {
     \         'lineCounter': LineCounter(),
     \      },
     \ }
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](node_modules|target|dist)|(\.(DS_Storegit|git|hg|svn|optimized|compiled))$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+

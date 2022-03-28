@@ -1,36 +1,27 @@
-"" basic setting
-" syntax
+" basic setting
 syntax on
 
 " 文字コード自動判別
 set encoding=utf-8
 " set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fileencodings=utf-8
-
 " 改行コード自動判別
-set fileformats=unix,dos,mac
-" set ff=unix " $B2~9T%3!<%I(B dos/mac/unix
-" 改行コード可視化
+" set fileformats=unix,dos,mac
+" set ff=unix
 set nolist
-
-" incremental search
 set incsearch
-" high list hit letters
 set hlsearch
-
 set nu
 set nowrap
-
-" cursor
 set cursorline
-
-" new window position
 set splitbelow
 set splitright
-" disable window size adjustment
 set equalalways
-
 set wildmenu
+
+filetype plugin on
+filetype indent on
+runtime macros/matchit.vim
 
 " swap and undo
 function! CreateRequiredDirs() abort
@@ -47,7 +38,6 @@ set directory=~/.vim/swap
 set undodir=~/.vim/undo
 set undofile
 
-
 " 前回ファイルを閉じた時の位置を記憶する(だったと思う)
 augroup vimrcEx
       au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -62,3 +52,32 @@ if has('vim_starting')
     "                 " 置換モード時に非点滅の下線タイプのカーソル
     let &t_SR .= "\e[4 q"
 endif
+
+" Automatically open cwindow after run vimgrep
+augroup AutoQuickfix
+    autocmd!
+    autocmd QuickFixCmdPost *grep* cwindow
+augroup END
+
+" defualt indent
+set expandtab " タブ入力を複数の空白入力に置き変える
+set tabstop=4 " 画面上でタブ文字が占める幅
+set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set shiftwidth=4 " smartindentで増減する幅
+set autoindent " 改行時に前の行のインデントを継承する
+set smarttab " 改行時に前の行の構文をチェックし次の行のインデントを増減する
+
+set laststatus=2    " always display statusline
+" default statusline settings. This will be overwrite in file number 300.
+highlight StatusLine guifg=black guibg=#ffffff
+let dic_line = {'dos': 'CRLF', 'unix': 'LF', 'mac': 'CR'}
+set statusline=%f\ %m\ %r\ %w\ %q
+set statusline+=%=
+set statusline+=%l/%Lrow\ %ccol\ \|\ %{&fenc}\ \|\ %{dic_line[&ff]}\ \|\ %{&tabstop}\%{(&expandtab?'sp':'tb')}\ \|\ %{&syntax}
+set statusline+=\ \|\ E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['0']}/I:%{ale#statusline#Count(bufnr('%'))['0']}
+
+"" colortheme setting. This will overwrite in file number 300.
+" if filereadable( expand("$HOME/.vim/autoload/molokai/colors/molokai.vim") )
+    " colorscheme molokai
+" endif
+

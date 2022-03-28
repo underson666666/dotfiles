@@ -1,3 +1,10 @@
+" Fern
+noremap <silent> <C-n> :Fern . -drawer -stay -keep -toggle -reveal=% -width=35<CR>
+" augroup fernStart
+"     autocmd!
+"     autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=% -width=35
+" augroup END
+
 " config t9md/vim-quickhl
 nmap <Space>h <Plug>(quickhl-manual-this)
 xmap <Space>h <Plug>(quickhl-manual-this)
