@@ -73,8 +73,11 @@ let g:lightline = {
     \      },
     \ }
 
+let s:ignore_dir = '\v[\/](node_modules|target|dist|data|__pycache__|classes|libs|logs?)'
+let s:ignore_dir += '|'
+let s:ignore_dir += '(\.(DS_Storegit|git|hg|svn|optimized|compiled))$'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](node_modules|target|dist)|(\.(DS_Storegit|git|hg|svn|optimized|compiled))$',
+  \ 'dir':  s:ignore_dir,
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }

@@ -5,11 +5,14 @@ endif
 set t_Co=256
 
 " Windows Subsystem for Linux で、ヤンクでクリップボードにコピー
-if has("wsl")
+if executable("clip.exe")
     augroup myYank
         autocmd!
         autocmd TextYankPost * :call system('clip.exe', @")
     augroup END
+endif
+if has('win32')
+    set clipboard=unnamed,autoselect
 endif
 
 " WSLでページスクロールした際に背景色がおかしくなる現象の対応

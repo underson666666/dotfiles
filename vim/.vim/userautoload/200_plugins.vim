@@ -32,6 +32,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'reireias/vim-cheatsheet'
   " ファイル検索
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'mattn/ctrlp-matchfuzzy'
   " バッファにあるファイルをシュッっと実行
   Plug 'thinca/vim-quickrun'
   " 括弧で囲ったり囲っている文字を変更
