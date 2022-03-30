@@ -16,7 +16,10 @@ let g:everforest_background = 'hard'
 let g:color_scheme_switcher#colors = { "0": "night-owl", "08": "everforest", "17": "github", "18:30": "night-owl"}
 let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "light", "17": "dark", "18:30": "dark"}
 if has('vim_starting')
-    call color_scheme_switcher#StartColorSchemeSwitcher()
+    try
+        call color_scheme_switcher#StartColorSchemeSwitcher()
+    catch
+    endtry
 endif
 
 " Language Server
