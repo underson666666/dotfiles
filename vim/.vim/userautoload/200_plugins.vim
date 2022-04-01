@@ -51,6 +51,7 @@ call plug#begin('~/.vim/autoload')
 
   " Git関連プラグイン
   Plug 'airblade/vim-gitgutter'
+  Plug 'lambdalisue/gina.vim'
 
   " ファイルツリー
   Plug 'lambdalisue/fern.vim'
