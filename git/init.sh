@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-target=~/.gitconfig
-if [ ! -e $target ] || ! grep -q diff $target ; then
-    cat .gitconfig_addtional >> ~/.gitconfig
-fi
+git config --global core.editor vim
+git config --global color.diff auto
+git config --global color.status auto
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
