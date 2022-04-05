@@ -85,3 +85,7 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+let g:ale_fixers = {
+    \ 'javascript': ['eslint'],
+    \ 'python': ['autopep8', 'black', 'isort'],
+    \ }
