@@ -13,4 +13,12 @@ HISTTIMEFORMAT='%F %T '
 HISTSIZE=10000
 HISTFILESIZE=20000
 
+# direnv
+show_virtual_env() {
+    if [ -n "$VIRTUAL_ENV" ] and [ -n "$DIRENV_DIR" ] ; then
+        echo "($(basename $VIRTUAL_ENV))"
+    fi
+}
+PS1='$(show_virtual_env)'$PS1
+
 # eval $(dircolors -b ~/.dircolors)
