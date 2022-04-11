@@ -3,6 +3,7 @@
 alias vi='vim'
 alias view='vim -R'
 alias flake8='flake8 --statistics'
+alias tmux='tmux -2'
 
 # WSL
 if [[ "$(uname -r)" == *microsoft* ]]; then

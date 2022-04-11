@@ -78,6 +78,8 @@ call plug#begin('~/.vim/autoload')
   Plug 'thinca/vim-visualstar'
   " テキストオブジェクトの強化
   Plug 'wellle/targets.vim'
+  " 各言語のテンプレート
+  Plug 'mattn/vim-sonictemplate'
 
 " " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

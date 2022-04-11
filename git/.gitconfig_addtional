@@ -1,6 +1,0 @@
-[core]
-    editor = vim
-[diff]
-    tool = vimdiff
-[difftool]
-    prompt = false

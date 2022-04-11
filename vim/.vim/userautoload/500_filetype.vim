@@ -12,8 +12,3 @@ if has("autocmd")
 
     augroup END
 endif
-
-let g:ale_fixers = {
-    \ 'python': ['black'],
-    \ }
-
