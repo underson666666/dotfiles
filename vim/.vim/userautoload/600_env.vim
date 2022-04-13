@@ -1,9 +1,3 @@
-" If you have vim >=8.0 or Neovim >= 0.1.5
-if (has("termguicolors"))
-  set termguicolors
-endif
-set t_Co=256
-
 " Windows Subsystem for Linux で、ヤンクでクリップボードにコピー
 if executable("clip.exe")
     augroup myYank
@@ -24,3 +18,10 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+" terminalにGuakeを使っているときに背景を透過できるように
+if executable("guake")
+    highlight Normal ctermbg=NONE guibg=NONE
+    highlight NonText ctermbg=NONE guibg=NONE
+    highlight SpecialKey ctermbg=NONE guibg=NONE
+    highlight EndOfBuffer ctermbg=NONE guibg=NONE
+endif
