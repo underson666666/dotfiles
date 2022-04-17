@@ -88,8 +88,8 @@ let g:ctrlp_custom_ignore = {
 let g:ale_linters = {
     \   'javascript': ['eslint'],
     \}
-
 let g:ale_fixers = {
     \ 'javascript': ['prettier'],
     \ 'python': ['autopep8', 'black', 'isort'],
     \ }
+let g:ale_lint_on_save = 1
