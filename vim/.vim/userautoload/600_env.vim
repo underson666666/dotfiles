@@ -20,8 +20,16 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " terminalにGuakeを使っているときに背景を透過できるように
 if executable("guake")
-    highlight Normal ctermbg=NONE guibg=NONE
-    highlight NonText ctermbg=NONE guibg=NONE
-    highlight SpecialKey ctermbg=NONE guibg=NONE
-    highlight EndOfBuffer ctermbg=NONE guibg=NONE
+    function! s:TransparentTerminal() abort
+        highlight Normal ctermbg=NONE guibg=NONE
+        highlight NonText ctermbg=NONE guibg=NONE
+        highlight SpecialKey ctermbg=NONE guibg=NONE
+        highlight EndOfBuffer ctermbg=NONE guibg=NONE
+        set nocursorline
+    endfunction
+
+    augroup transparentTerminal
+        autocmd!
+        autocmd VimEnter,Colorscheme * call s:TransparentTerminal()
+    augroup End
 endif
