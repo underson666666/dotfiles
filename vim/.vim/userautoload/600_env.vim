@@ -1,12 +1,12 @@
 " Windows Subsystem for Linux で、ヤンクでクリップボードにコピー
 if executable("clip.exe")
-    augroup myYank
-        autocmd!
-        autocmd TextYankPost * :call system('clip.exe', @")
-    augroup END
+  augroup myYank
+    autocmd!
+    autocmd TextYankPost * :call system('clip.exe', @")
+  augroup END
 endif
 if has('win32')
-    set clipboard=unnamed,autoselect
+  set clipboard=unnamed,autoselect
 endif
 
 " WSLでページスクロールした際に背景色がおかしくなる現象の対応
@@ -20,16 +20,16 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " terminalにGuakeを使っているときに背景を透過できるように
 if executable("guake")
-    function! s:TransparentTerminal() abort
-        highlight Normal ctermbg=NONE guibg=NONE
-        highlight NonText ctermbg=NONE guibg=NONE
-        highlight SpecialKey ctermbg=NONE guibg=NONE
-        highlight EndOfBuffer ctermbg=NONE guibg=NONE
-        set nocursorline
-    endfunction
+  function! s:TransparentTerminal() abort
+    highlight Normal ctermbg=NONE guibg=NONE
+    highlight NonText ctermbg=NONE guibg=NONE
+    highlight SpecialKey ctermbg=NONE guibg=NONE
+    highlight EndOfBuffer ctermbg=NONE guibg=NONE
+    set nocursorline
+  endfunction
 
-    augroup transparentTerminal
-        autocmd!
-        autocmd VimEnter,Colorscheme * call s:TransparentTerminal()
-    augroup End
+  augroup transparentTerminal
+    autocmd!
+    autocmd VimEnter,Colorscheme * call s:TransparentTerminal()
+  augroup End
 endif

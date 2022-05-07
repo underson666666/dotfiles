@@ -16,10 +16,10 @@ let g:everforest_background = 'hard'
 let g:color_scheme_switcher#colors = { "0": "night-owl", "08": "everforest", "17": "github", "18:30": "night-owl"}
 let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "light", "17": "dark", "18:30": "dark"}
 if has('vim_starting')
-    try
-        call color_scheme_switcher#StartColorSchemeSwitcher()
-    catch
-    endtry
+  try
+    call color_scheme_switcher#StartColorSchemeSwitcher()
+  catch
+  endtry
 endif
 
 " Language Server
@@ -33,48 +33,48 @@ let g:lsp_log_verbose = 0
 " lightline
 set noshowmode
 function! CustomExpand() abort
-    return "%{&tabstop}\%{(&expandtab?'sp':'tb')}"
+  return "%{&tabstop}\%{(&expandtab?'sp':'tb')}"
 endfunction
 function! CustomFf() abort
-    let dic_line = {'dos': 'CRLF', 'unix': 'LF', 'mac': 'CR'}
-    return "%{dic_line[&ff]}"
+  let dic_line = {'dos': 'CRLF', 'unix': 'LF', 'mac': 'CR'}
+  return "%{dic_line[&ff]}"
 endfunction
 function! LineCounter() abort
-    " 0がerror+style_error, 1がwarning+style_warning と思われる
-    return "E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['1']}/I:%{ale#statusline#Count(bufnr('%'))['info']}"
+  " 0がerror+style_error, 1がwarning+style_warning と思われる
+  return "E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['1']}/I:%{ale#statusline#Count(bufnr('%'))['info']}"
 endfunction
 function! CustomSyntax() abort
-    return "%{&syntax}"
+  return "%{&syntax}"
 endfunction
 function! CustomGitBranch() abort
-    if !exists(":gitbranch#name()")
-        return "%{gitbranch#name()}"
-    else
-        return ""
-    endif
+  if !exists(":gitbranch#name()")
+    return "%{gitbranch#name()}"
+  else
+    return ""
+  endif
 endfunction
 
 let g:lightline = {
-    \     'colorscheme': 'edge',
-    \     'active': {
-    \        'left': [ [ 'mode', 'paste' ],
-    \                  [ 'readonly', 'filename', 'modified' ],
-    \                  [ 'lineCounter' ],
-    \                  [ 'gitBranch' ],
-    \                ],
-    \        'right': [ [ 'lineinfo' ],
-    \                   [ 'percent' ] ,
-    \                   [ 'customExpand', 'fileencoding', 'customFf', 'customSyntax' ]
-    \                 ],
-    \      },
-    \      'component': {
-    \         'gitBranch': CustomGitBranch(),
-    \         'customFf': CustomFf(),
-    \         'customExpand': CustomExpand(),
-    \         'customSyntax': CustomSyntax(),
-    \         'lineCounter': LineCounter(),
-    \      },
-    \ }
+  \   'colorscheme': 'edge',
+  \   'active': {
+  \     'left': [ [ 'mode', 'paste' ],
+  \       [ 'readonly', 'filename', 'modified' ],
+  \       [ 'lineCounter' ],
+  \       [ 'gitBranch' ],
+  \     ],
+  \     'right': [ [ 'lineinfo' ],
+  \       [ 'percent' ] ,
+  \       [ 'customExpand', 'fileencoding', 'customFf', 'customSyntax' ]
+  \     ],
+  \   },
+  \   'component': {
+  \     'gitBranch': CustomGitBranch(),
+  \     'customFf': CustomFf(),
+  \     'customExpand': CustomExpand(),
+  \     'customSyntax': CustomSyntax(),
+  \     'lineCounter': LineCounter(),
+  \   },
+  \ }
 
 let s:ignore_dir = '\v[\/](node_modules|target|dist|data|__pycache__|classes|libs|logs?)'
 let s:ignore_dir += '|'
@@ -86,10 +86,10 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 let g:ale_linters = {
-    \   'javascript': ['eslint'],
-    \}
+  \   'javascript': ['eslint'],
+  \ }
 let g:ale_fixers = {
-    \ 'javascript': ['prettier'],
-    \ 'python': ['autopep8', 'black', 'isort'],
-    \ }
+  \   'javascript': ['prettier'],
+  \   'python': ['autopep8', 'black', 'isort'],
+  \ }
 let g:ale_fix_on_save = 1
