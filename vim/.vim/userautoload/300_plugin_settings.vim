@@ -91,3 +91,5 @@ let g:ale_fixers = {
   \   'python': ['autopep8', 'black', 'isort'],
   \ }
 let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_options = '--single-quote --no-semi --tab-width 4 --no-bracket-spacing --end-of-line auto'
