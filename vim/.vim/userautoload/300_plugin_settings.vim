@@ -6,7 +6,7 @@ let g:cheatsheet#vsplit = 1
 let g:table_mode_corner='|'
 
 " Auto close tag work file type
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.jsx,*.tsx'
 
 let g:fern#renderer = 'nerdfont'
 
