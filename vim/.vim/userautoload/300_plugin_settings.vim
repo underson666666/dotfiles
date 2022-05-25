@@ -33,22 +33,22 @@ let g:lsp_log_verbose = 0
 " lightline
 set noshowmode
 function! CustomExpand() abort
-  return "%{&tabstop}\%{(&expandtab?'sp':'tb')}"
+  return winwidth(0) > 90 ? &tabstop.(&expandtab?'sp':'tb') : ''
 endfunction
 function! CustomFf() abort
   let dic_line = {'dos': 'CRLF', 'unix': 'LF', 'mac': 'CR'}
-  return "%{dic_line[&ff]}"
+  return winwidth(0) > 80 ? dic_line[&ff] : ''
 endfunction
-function! LineCounter() abort
+function! LintCounter() abort
   " 0がerror+style_error, 1がwarning+style_warning と思われる
-  return "E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['1']}/I:%{ale#statusline#Count(bufnr('%'))['info']}"
+  return winwidth(0) > 70 ? 'E:'.ale#statusline#Count(bufnr('%'))['0'].'/W:'.ale#statusline#Count(bufnr('%'))['1']."/I:".ale#statusline#Count(bufnr('%'))['info'] : ''
 endfunction
 function! CustomSyntax() abort
-  return "%{&syntax}"
+  return &syntax
 endfunction
 function! CustomGitBranch() abort
   if !exists(":gitbranch#name()")
-    return "%{gitbranch#name()}"
+    return winwidth(0) > 90 ? gitbranch#name() : ''
   else
     return ""
   endif
@@ -59,7 +59,7 @@ let g:lightline = {
   \   'active': {
   \     'left': [ [ 'mode', 'paste' ],
   \       [ 'readonly', 'filename', 'modified' ],
-  \       [ 'lineCounter' ],
+  \       [ 'lintCounter' ],
   \       [ 'gitBranch' ],
   \     ],
   \     'right': [ [ 'lineinfo' ],
@@ -67,12 +67,12 @@ let g:lightline = {
   \       [ 'customExpand', 'fileencoding', 'customFf', 'customSyntax' ]
   \     ],
   \   },
-  \   'component': {
-  \     'gitBranch': CustomGitBranch(),
-  \     'customFf': CustomFf(),
-  \     'customExpand': CustomExpand(),
-  \     'customSyntax': CustomSyntax(),
-  \     'lineCounter': LineCounter(),
+  \   'component_function': {
+  \     'gitBranch': 'CustomGitBranch',
+  \     'customFf': 'CustomFf',
+  \     'customExpand': 'CustomExpand',
+  \     'customSyntax': 'CustomSyntax',
+  \     'lintCounter': 'LintCounter',
   \   },
   \ }
 
