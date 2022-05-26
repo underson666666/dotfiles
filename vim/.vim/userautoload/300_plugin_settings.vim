@@ -93,3 +93,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_prettier_options = '--single-quote --no-semi --tab-width 4 --no-bracket-spacing --end-of-line auto'
+
+" indent guides
+let g:indent_guides_enable_on_vim_startup = 1

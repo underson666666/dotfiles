@@ -83,6 +83,8 @@ call plug#begin('~/.vim/autoload')
   " 自動で括弧を閉じる
   "Plug 'mattn/vim-lexiv'   " このプラグインはバグがあった2020/09/10
   Plug 'jiangmiao/auto-pairs'
+  " indent guide
+  Plug 'nathanaelkane/vim-indent-guides'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
