@@ -1,26 +1,22 @@
 if has("autocmd")
   augroup fileTypeIndent
     autocmd!
-
-    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-    autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-    autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-    autocmd BufNewFile,BufRead *.css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-    autocmd BufNewFile,BufRead *.yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-    autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile
-    autocmd BufNewFile,BufRead Dockerfile* setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-
     autocmd BufNewFile,BufRead * call s:SetIndentByFiletype()
   augroup END
-
 endif
 
+let s:indent2space = ['javascript', 'vim', 'typescript', 'css', 'yaml']
+let s:indent4space = ['python', 'dockerfile']
+let s:indent2tab = []
+let s:indent4tab = []
 function s:SetIndentByFiletype() abort
-  if &filetype == 'vim'
+  if match(s:indent2space, &filetype) != -1
     setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  elseif match(s:indent4space, &filetype) != -1
+    setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+  elseif match(s:indent2tab, &filetype) != -1
+    setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  elseif match(s:indent4tab, &filetype) != -1
+    setlocal tabstop=4 softtabstop=4 shiftwidth=4
   endif
 endfunction
