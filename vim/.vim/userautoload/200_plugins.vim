@@ -86,5 +86,7 @@ call plug#begin('~/.vim/autoload')
   " indent guide
   Plug 'nathanaelkane/vim-indent-guides'
 
+  Plug 'tyru/open-browser.vim'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
