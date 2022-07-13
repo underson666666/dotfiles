@@ -15,8 +15,8 @@ function s:SetIndentByFiletype() abort
   elseif match(s:indent4space, &filetype) != -1
     setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
   elseif match(s:indent2tab, &filetype) != -1
-    setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
   elseif match(s:indent4tab, &filetype) != -1
-    setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
   endif
 endfunction
