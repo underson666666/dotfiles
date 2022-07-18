@@ -8,7 +8,7 @@ endif
 let s:indent2space = ['javascript', 'vim', 'typescript', 'css', 'yaml']
 let s:indent4space = ['python', 'dockerfile']
 let s:indent2tab = []
-let s:indent4tab = []
+let s:indent4tab = ['go']
 function s:SetIndentByFiletype() abort
   if match(s:indent2space, &filetype) != -1
     setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
