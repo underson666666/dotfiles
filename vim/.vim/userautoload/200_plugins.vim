@@ -37,7 +37,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'lambdalisue/gina.vim'
 
   " ファイルツリー
-  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern.vim', {'branch': 'main'}
   Plug 'lambdalisue/nerdfont.vim'
   Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
