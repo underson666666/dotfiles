@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+git config --global init.defaultBranch main
 git config --global core.editor vim
 git config --global color.diff auto
 git config --global color.status auto
