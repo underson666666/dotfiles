@@ -88,12 +88,16 @@ let g:ale_linters = {
   \ }
 let g:ale_fixers = {
   \   'javascript': ['prettier'],
+  \   'typescript': ['prettier'],
+  \   'javascriptreact': ['prettier'],
+  \   'typescriptreact': ['prettier'],
+  \   'css': ['prettier'],
   \   'python': ['autopep8', 'black', 'isort'],
   \   'go': ['gofmt'],
   \ }
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_javascript_prettier_options = '--single-quote --no-semi --tab-width 2 --no-bracket-spacing --end-of-line auto'
+let g:ale_javascript_prettier_options = '--single-quote --tab-width 2 --no-bracket-spacing --end-of-line auto'
 
 " indent guides
 " let g:indent_guides_enable_on_vim_startup = 1

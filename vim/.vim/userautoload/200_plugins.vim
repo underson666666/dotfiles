@@ -15,12 +15,14 @@ call plug#begin('~/.vim/autoload')
   Plug 'underson666666/color-scheme-switcher-over-time'
 
   " filetype
+  Plug 'maxmellon/vim-jsx-pretty', {'for': ['javascriptreact', 'typescriptreact']}
+  Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
   " plantuml syntax
   " Plug 'aklt/plantuml-syntax'
   " Ansible syntax
   " Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
   " CSVを見やすくする
-  Plug 'mechatroner/rainbow_csv'
+  Plug 'mechatroner/rainbow_csv', {'for': ['csv']}
   " 各言語のテンプレート
   Plug 'mattn/vim-sonictemplate'
   " HTML入力効率化
