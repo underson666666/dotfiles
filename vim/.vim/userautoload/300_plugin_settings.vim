@@ -76,10 +76,10 @@ let g:lightline = {
   \   },
   \ }
 
-let s:ignore_dir = 'node_modules\|target\|dist\|data\|__pycache__\|classes\|libs\|log\|logs'
+let s:ignore_dir = 'node_modules\|target\|dist\|data\|__pycache__\|classes\|libs\|venv\|log'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  s:ignore_dir,
-  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'file': '\v\.(exe|so|dll|pyi)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
