@@ -5,7 +5,7 @@ if has("autocmd")
   augroup END
 endif
 
-let s:indent2space = ['javascript', 'vim', 'typescript', 'css', 'yaml']
+let s:indent2space = ['javascript', 'vim', 'typescript', 'css', 'yaml', 'typescriptreact', 'javascriptreact']
 let s:indent4space = ['python', 'dockerfile']
 let s:indent2tab = []
 let s:indent4tab = ['go']
