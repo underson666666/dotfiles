@@ -1,5 +1,6 @@
 
 # additional settings
 export no_proxy="127.0.0.1,localhost"
+export EDITOR=vim
 
 test -r ~/.bashrc && . ~/.bashrc
