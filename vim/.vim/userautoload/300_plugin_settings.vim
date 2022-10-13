@@ -14,7 +14,7 @@ let g:fern#renderer = 'nerdfont'
 let g:everforest_background = 'hard'
 " color_scheme_switcher
 let g:color_scheme_switcher#colors = { "0": "night-owl", "08": "everforest", "17": "github", "18:30": "night-owl"}
-let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "light", "17": "dark", "18:30": "dark"}
+let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "dark", "17": "dark", "18:30": "dark"}
 if has('vim_starting')
   try
     call color_scheme_switcher#StartColorSchemeSwitcher()
