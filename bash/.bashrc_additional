@@ -1,5 +1,7 @@
 
-# additional settings
+#######################
+# additional settings #
+#######################
 alias vi='vim'
 alias view='vim -R'
 alias flake8='flake8 --statistics'
@@ -10,16 +12,18 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
     alias cmd='explorere.exe'
 fi
 
+# history configurations
 HISTTIMEFORMAT='%F %T '
 HISTSIZE=10000
 HISTFILESIZE=20000
 
-# direnv
+# if installed direnv, show virtual env name in pronpt.
 show_virtual_env() {
     if [ -n "$VIRTUAL_ENV" ] && [ -n "$DIRENV_DIR" ] ; then
         echo "($(basename $VIRTUAL_ENV))"
     fi
 }
 PS1='$(show_virtual_env)'$PS1
+# eval "$(direnv hook bash)"
 
 # eval $(dircolors -b ~/.dircolors)
