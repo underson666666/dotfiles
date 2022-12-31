@@ -26,4 +26,14 @@ show_virtual_env() {
 PS1='$(show_virtual_env)'$PS1
 # eval "$(direnv hook bash)"
 
+# show git branch name
+if type __git_ps1 >/dev/null 2>&1; then
+    # source ~/bin/.git-prompt.sh
+    # wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -O ~/bin/.git-prompt.sh
+    show_git_branch() {
+        echo $(__git_ps1)" "
+    }
+    PS1=$PS1'$(show_git_branch)'
+fi
+
 # eval $(dircolors -b ~/.dircolors)
