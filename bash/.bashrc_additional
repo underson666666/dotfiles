@@ -33,7 +33,7 @@ if type __git_ps1 >/dev/null 2>&1; then
     show_git_branch() {
         echo $(__git_ps1)" "
     }
-    PS1=$PS1'$(show_git_branch)'
+    PS1=$PS1'$(show_git_branch)\n$ '
 fi
 
 # eval $(dircolors -b ~/.dircolors)
