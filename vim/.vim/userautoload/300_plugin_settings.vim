@@ -85,6 +85,7 @@ let g:ctrlp_custom_ignore = {
 
 let g:ale_linters = {
   \   'javascript': ['eslint'],
+  \   'python': ['flake8', 'pylint'],
   \ }
 let g:ale_fixers = {
   \   'javascript': ['prettier'],
@@ -96,6 +97,7 @@ let g:ale_fixers = {
   \   'go': ['gofmt'],
   \ }
 let g:ale_fix_on_save = 1
+" let g:ale_sign_column_always = 1
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_prettier_options = '--single-quote --tab-width 2 --no-bracket-spacing --end-of-line auto'
 " let g:ale_python_black_options = '--line-length=100'
