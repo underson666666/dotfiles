@@ -9,7 +9,7 @@ alias tmux='tmux -2'
 
 # WSL
 if [[ "$(uname -r)" == *microsoft* ]]; then
-    alias cmd='explorere.exe'
+    alias cmd='explorer.exe'
 fi
 
 # history configurations
