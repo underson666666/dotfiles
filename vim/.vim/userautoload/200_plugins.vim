@@ -80,8 +80,6 @@ call plug#begin('~/.vim/autoload')
   Plug 'tpope/vim-surround'
   " テーブル整形
   Plug 'dhruvasagar/vim-table-mode'
-  " テキストオブジェクトの強化
-  Plug 'wellle/targets.vim'
   " 自動で括弧を閉じる
   "Plug 'mattn/vim-lexiv'   " このプラグインはバグがあった2020/09/10
   Plug 'jiangmiao/auto-pairs'
@@ -89,6 +87,13 @@ call plug#begin('~/.vim/autoload')
   Plug 'nathanaelkane/vim-indent-guides'
 
   Plug 'tyru/open-browser.vim'
+
+  Plug 'puremourning/vimspector'
+
+  " text object
+  Plug 'jeetsukumaran/vim-pythonsense', {'for': ['python']}
+  " テキストオブジェクトの強化
+  Plug 'wellle/targets.vim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
