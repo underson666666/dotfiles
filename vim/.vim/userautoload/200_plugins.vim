@@ -17,6 +17,7 @@ call plug#begin('~/.vim/autoload')
   " filetype
   Plug 'maxmellon/vim-jsx-pretty', {'for': ['javascriptreact', 'typescriptreact']}
   Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
+  Plug 'sgur/vim-editorconfig'
   " plantuml syntax
   " Plug 'aklt/plantuml-syntax'
   " Ansible syntax
