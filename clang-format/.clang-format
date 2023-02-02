@@ -1,0 +1,8 @@
+# vim: set syntax=yaml filetype=yaml
+
+# ref: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# ref: https://qiita.com/koyukitukimino/items/9b8f74d1ae307a7017d3
+# ref: https://pystyle.info/apps/clang-format-editor/
+
+BasedOnStyle: LLVM
+IndentWidth: 4

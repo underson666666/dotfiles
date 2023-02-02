@@ -95,12 +95,14 @@ let g:ale_fixers = {
   \   'css': ['prettier'],
   \   'python': ['autopep8', 'black', 'isort'],
   \   'go': ['gofmt'],
+  \   'c': ['clang-format'],
   \ }
 let g:ale_fix_on_save = 1
 " let g:ale_sign_column_always = 1
 let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_javascript_prettier_options = '--single-quote --tab-width 2 --no-bracket-spacing --end-of-line auto'
+" let g:ale_javascript_prettier_options = '--single-quote --tab-width 2 --no-bracket-spacing --end-of-line auto'
 " let g:ale_python_black_options = '--line-length=100'
+let g:ale_c_clangformat_use_local_file = 1
 
 " indent guides
 " let g:indent_guides_enable_on_vim_startup = 1
@@ -108,3 +110,5 @@ let g:ale_javascript_prettier_options = '--single-quote --tab-width 2 --no-brack
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+
+let g:vimspector_enable_mappings = 'HUMAN'
