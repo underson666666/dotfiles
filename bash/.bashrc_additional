@@ -2,6 +2,7 @@
 #######################
 # additional settings #
 #######################
+export EDITOR=vim
 alias vi='vim'
 alias view='vim -R'
 alias flake8='flake8 --statistics'
