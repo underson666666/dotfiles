@@ -74,6 +74,11 @@ set statusline+=%=
 set statusline+=%l/%Lrow\ %ccol\ \|\ %{&fenc}\ \|\ %{dic_line[&ff]}\ \|\ %{&tabstop}\%{(&expandtab?'sp':'tb')}\ \|\ %{&syntax}
 set statusline+=\ \|\ E:%{ale#statusline#Count(bufnr('%'))['0']}/W:%{ale#statusline#Count(bufnr('%'))['0']}/I:%{ale#statusline#Count(bufnr('%'))['0']}
 
+" 検索時にヒット数を表示する
+if has('patch-8.1.1270')
+  set shortmess-=S
+endif
+
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
   set termguicolors
