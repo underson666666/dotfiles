@@ -51,6 +51,7 @@ if has('vim_starting')
   let &t_SR .= "\e[4 q"
 endif
 
+set grepprg=grep\ -rn\ --exclude-dir={vender,__pycache__,WEB-INF,classes,lib,target,node_modules,build,venv,.venv,.git}
 " Automatically open cwindow after run vimgrep
 augroup AutoQuickfix
   autocmd!

@@ -7,6 +7,7 @@ alias vi='vim'
 alias view='vim -R'
 alias flake8='flake8 --statistics'
 alias tmux='tmux -2'
+alias grep='grep --color=auto --exclude-dir={vender,__pycache__,WEB-INF,classes,lib,target,node_modules,build,venv,.venv,.git}'
 
 # WSL
 if [[ "$(uname -r)" == *microsoft* ]]; then
