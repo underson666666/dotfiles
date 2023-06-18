@@ -94,7 +94,7 @@ let g:ale_fixers = {
   \   'typescriptreact': ['prettier'],
   \   'css': ['prettier'],
   \   'python': ['autopep8', 'black', 'isort'],
-  \   'go': ['gofmt'],
+  \   'go': ['gofmt', 'goimports'],
   \   'c': ['clang-format'],
   \ }
 let g:ale_fix_on_save = 1
