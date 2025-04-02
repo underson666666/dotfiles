@@ -11,16 +11,20 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.jsx,*.tsx
 let g:fern#renderer = 'nerdfont'
 
 " colorscheme
+colorscheme night-owl
 let g:everforest_background = 'hard'
 " color_scheme_switcher
-let g:color_scheme_switcher#colors = { "0": "night-owl", "08": "everforest", "17": "github", "18:30": "night-owl"}
-let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "dark", "17": "dark", "18:30": "dark"}
-if has('vim_starting')
-  try
-    call color_scheme_switcher#StartColorSchemeSwitcher()
-  catch
-  endtry
-endif
+" let g:color_scheme_switcher#colors = { "0": "night-owl", "08": "everforest", "17": "github", "18:30": "night-owl"}
+" let g:color_scheme_switcher#backgruonds = { "0": "dark", "08": "dark", "17": "dark", "18:30": "dark"}
+" if has('vim_starting')
+"   try
+"     call color_scheme_switcher#StartColorSchemeSwitcher()
+"   catch
+"   endtry
+" endif
+
+" todo.md
+let g:todo_projects=['projectA', 'projectB', '日本語も']
 
 " Language Server
 let g:lsp_diagnostics_enabled = 1
@@ -88,10 +92,10 @@ let g:ale_linters = {
   \   'python': ['flake8', 'pylint'],
   \ }
 let g:ale_fixers = {
-  \   'javascript': ['prettier'],
-  \   'typescript': ['prettier'],
-  \   'javascriptreact': ['prettier'],
-  \   'typescriptreact': ['prettier'],
+  \   'javascript': ['deno', 'prettier'],
+  \   'typescript': ['deno', 'prettier'],
+  \   'javascriptreact': ['deno', 'prettier'],
+  \   'typescriptreact': ['deno', 'prettier'],
   \   'css': ['prettier'],
   \   'python': ['autopep8', 'black', 'isort'],
   \   'go': ['gofmt', 'goimports'],

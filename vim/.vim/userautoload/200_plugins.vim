@@ -12,7 +12,7 @@ call plug#begin('~/.vim/autoload')
   Plug 'sainnhe/edge'
   Plug 'sainnhe/everforest'
   Plug 'cocopon/iceberg.vim'
-  Plug 'underson666666/color-scheme-switcher-over-time'
+  " Plug 'underson666666/color-scheme-switcher-over-time'
 
   " filetype
   Plug 'maxmellon/vim-jsx-pretty', {'for': ['javascriptreact', 'typescriptreact']}
@@ -34,6 +34,8 @@ call plug#begin('~/.vim/autoload')
   Plug 'tyru/caw.vim'
   " 非同期な各言語でリント実行ツール
   Plug 'dense-analysis/ale'
+  " todo.mdのタスク管理を強化
+  Plug 'underson666666/vim-todo-md-highlight'
 
   " Git関連
   Plug 'airblade/vim-gitgutter'
