@@ -85,3 +85,12 @@ if (has("termguicolors"))
   set termguicolors
 endif
 set t_Co=256
+
+" 折り畳みの状態を保存・読み込み設定
+" 参考: https://nametake-1009.hatenablog.com/entry/2016/10/02/212629
+" 参考: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
+" Save fold settings.
+autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
+autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+" Don't save options.
+set viewoptions-=options"
