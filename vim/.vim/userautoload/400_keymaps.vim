@@ -37,3 +37,6 @@ endfunction
 
 " キーマッピング（例：\eで起動）
 nnoremap <Leader>e :call OpenExplorerUnderCursor()<CR>
+
+nnoremap ,, :up<CR>
+nnoremap ^ ^:up<CR>
