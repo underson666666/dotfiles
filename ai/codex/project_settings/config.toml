@@ -1,0 +1,24 @@
+# untrusted: 全てのコマンドで承認を要求
+# on-failure: コマンド失敗時のみ承認を要求
+# on-request: モデルが明示的に要求した場合のみ要求
+# never: 承認を要求しない(自動実行)
+approval_policy = "never"
+
+# read-only: ファイル読み取り、編集、コマンド実行に承認が必要
+# workspace-write: ワークスペース内の読み書きとコマンド実行が可能
+# danger-full-access: 全ディスクとネットワークへのアクセスが可能(危険)
+sandbox_mode = "workspace-write"
+
+# disabled/cached/live
+web_search = "live"
+
+[sandbox_workspace_write]
+network_access = true
+
+[shell_environment_policy]
+inherit = "core"
+set = { TTTTT = "THIS IS CUSTOM ENV TEST" }
+
+[tools]
+view_image = true
+

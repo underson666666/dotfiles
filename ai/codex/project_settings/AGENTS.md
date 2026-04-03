@@ -1,0 +1,17 @@
+# AGENTS.md
+
+## Project Overview
+- TypeScript + React 18 のWebアプリケーション
+- バックエンド: Node.js + Express
+- Pythonのバージョンは3.12以上を使用。
+- クラスメソッドはすべてdocstringを書くこと。
+
+## Boundaries(境界・禁止事項)
+- `.env*` ファイルを変更・コミットしない
+- 本番環境の設定ファイルを変更する場合は必ず確認を求める
+- SQL生成は禁止。
+
+## Workflow
+- 変更前にテストを実行し、既存テストが通ることを確認する
+- コミットメッセージは Conventional Commits に従う
+
