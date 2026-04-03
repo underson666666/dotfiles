@@ -1,6 +1,8 @@
 " vim settings file split
 runtime! userautoload/*.vim
 
+let g:fern_disable_startup_warnings = 1
+
 " if gVim ~/.vimrc
 " source ~/.vim/userautoload/100_basic.vim
 " source ~/.vim/userautoload/101_filetype.vim
