@@ -10,11 +10,17 @@
 
 ## Git Operations Policy / Git操作ポリシー
 
-- AI MUST NOT execute any git commands.  
-  （AIはgitコマンドを実行してはいけない）
+- AI MUST NOT execute any git commands by default.  
+  （原則としてAIはgitコマンドを実行してはいけない）
 
-- AI MUST only suggest git commands as plain text.  
-  （AIはgitコマンドをプレーンテキストで提案するだけにすること）
+- AI MAY execute the following safe git commands:
+  - git add
+
+  （以下の安全なコマンドのみ実行してよい：
+    - git add）
+
+- For any other git commands, AI MUST only suggest them as plain text and MUST NOT execute them.  
+  （上記以外のgitコマンドは提案のみとし、実行してはいけない）
 
 - Human is responsible for reviewing and executing all git operations.  
   （すべてのgit操作の確認および実行は人間が責任を持つ）
