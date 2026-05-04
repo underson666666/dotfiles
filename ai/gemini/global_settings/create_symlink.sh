@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-ln -s `pwd`/GEMINI.md ~/.gemini/GEMINI.md
+mv ~/.gemini/GEMINI.md ~/.gemini/GEMINI.md.bk 
+ln -s -f `pwd`/GEMINI.md ~/.gemini/GEMINI.md
