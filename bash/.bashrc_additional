@@ -26,7 +26,7 @@ show_virtual_env() {
     fi
 }
 PS1='$(show_virtual_env)'$PS1
-# eval "$(direnv hook bash)"
+eval "$(direnv hook bash)"
 
 # show git branch name
 if type __git_ps1 >/dev/null 2>&1; then

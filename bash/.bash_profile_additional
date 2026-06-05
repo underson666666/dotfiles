@@ -3,4 +3,9 @@
 export no_proxy="127.0.0.1,localhost"
 export EDITOR=vim
 
+# headroom
+export HEADROOM_TELEMETRY=off
+# rtk
+export RTK_TELEMETRY_DISABLED=1
+
 test -r ~/.bashrc && . ~/.bashrc
