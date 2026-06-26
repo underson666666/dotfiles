@@ -11,6 +11,8 @@ sandbox_mode = "read-only"
 
 # disabled/cached/live
 web_search = "live"
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
 
 [sandbox_workspace_write]
 network_access = false
@@ -21,6 +23,9 @@ inherit = "core"
 [tools]
 view_image = true
 
-[tui.model_availability_nux]
-"gpt-5.5" = 1
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "run-state", "approval-mode", "context-remaining", "five-hour-limit", "task-progress"]
+status_line_use_colors = true
 
+[tui.model_availability_nux]
+"gpt-5.5" = 4
