@@ -1,0 +1,6 @@
+{
+  "statusLine": {
+      "type": "command",
+      "command": "python \"C:/Users/<ユーザー名>/.claude/statusline_custom.py\""
+    }
+}
