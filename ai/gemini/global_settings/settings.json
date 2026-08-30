@@ -1,0 +1,23 @@
+{
+  "colorScheme": "colorblind-friendly dark",
+  "editor": "vim",
+  "enableTelemetry": false,
+  "model": "Gemini 3.7 Flash (Medium)",
+  "toolPermission": "proceed-in-sandbox",
+  "artifactReviewPolicy": "always-proceed",
+  "enableTerminalSandbox": true,
+  "allowNonWorkspaceAccess": false,
+  "permissions": {
+    "allow": [
+      "command(ls)",
+      "command(find)",
+      "command(echo)"
+    ]
+  },
+  "statusLine": {
+    "enabled": true,
+    "type": "command",
+    "command": "~/.gemini/antigravity-cli/statusline.sh"
+  }
+}
+
