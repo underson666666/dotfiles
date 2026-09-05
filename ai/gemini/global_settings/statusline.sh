@@ -55,10 +55,22 @@ CONTEXT_COLOR="$(awk -v n="$CONTEXT_USED" -v r="$RED" -v y="$YELLOW" -v g="$GREE
     else printf "%s", g;
 }')"
 
-# ---- Execution mode / background tasks ------------------------------------
+# ---- Execution mode / tool permissions / background tasks ------------------
 
-EXECUTION_MODE="$(printf '%s' "$JSON" | jq -r '.execution_mode // "unknown"')"
-TASK_COUNT="$(printf '%s' "$JSON" | jq -r '.task_count // 0')"
+CYCLE_MODE="$(printf '%s' "$JSON" | jq -r '.cycle_mode // "unknown"')"
+TOOL_PERM="$(jq -r '.toolPermission // "ask"' ~/.gemini/antigravity-cli/settings.json 2>/dev/null)"
+
+if [ "$TOOL_PERM" = "always-proceed" ]; then
+    PERM_LABEL="auto-approve"
+    PERM_COLOR="$GREEN"
+else
+    PERM_LABEL="${TOOL_PERM:-ask}"
+    PERM_COLOR="$YELLOW"
+fi
+
+# サブエージェントの数を取得
+SUBAGENTS_COUNT=$(printf '%s' "$JSON" | jq -r '[.subagents[]? | select(.status == "running")] | length // 0')
+
 
 # ---- Quotas / rate limits --------------------------------------------------
 
@@ -113,6 +125,6 @@ fi
 
 printf "${CYAN}%s(%s)${RESET}" "$MODEL_NAME" "$EFFORT"
 printf " ${DIM}|${RESET} %s" "$QUOTAS"
-printf " ${DIM}|${RESET} ${CONTEXT_COLOR}Ctx:%s%%${RESET}" "$CONTEXT_USED_FMT"
-printf " ${DIM}|${RESET} ${BLUE}%s${RESET}" "$EXECUTION_MODE"
-printf " ${DIM}|${RESET} tasks:%s\n" "$TASK_COUNT"
+printf " ${DIM}|${RESET} ${CONTEXT_COLOR}Ctx:%s%%${RESET}\n" "$CONTEXT_USED_FMT"
+printf "${BLUE}%s${RESET} ${DIM}(${RESET}${PERM_COLOR}%s${RESET}${DIM})${RESET}" "$CYCLE_MODE" "$PERM_LABEL"
+printf " ${DIM}|${RESET} agents:%s\n" "$SUBAGENTS_COUNT"
