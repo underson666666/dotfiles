@@ -1,18 +1,22 @@
 {
+  "agentMode": "accept-edits",
+  "allowNonWorkspaceAccess": false,
+  "artifactReviewPolicy": "always-proceed",
   "colorScheme": "colorblind-friendly dark",
   "editor": "vim",
   "enableTelemetry": false,
-  "model": "Gemini 3.7 Flash (Medium)",
-  "toolPermission": "proceed-in-sandbox",
-  "artifactReviewPolicy": "always-proceed",
   "enableTerminalSandbox": true,
-  "allowNonWorkspaceAccess": false,
+  "model": "Gemini 3.7 Flash (Medium)",
+  "toolPermission": "always-proceed",
   "permissions": {
     "allow": [
       "command(ls)",
       "command(find)",
       "command(echo)"
     ]
+  },
+  "sandbox": {
+    "enabeld": true
   },
   "statusLine": {
     "enabled": true,
