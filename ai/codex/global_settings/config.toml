@@ -1,8 +1,9 @@
-# untrusted: 全てのコマンドで承認を要求
 # on-failure: コマンド失敗時のみ承認を要求
 # on-request: モデルが明示的に要求した場合のみ要求
+# granular: 商品を種類ごとに細かく制御する
 # never: 承認を要求しない(自動実行)
-approval_policy = "untrusted"
+approval_policy = "on-request"
+
 
 # read-only: ファイル読み取り、編集、コマンド実行に承認が必要
 # workspace-write: ワークスペース内の読み書きとコマンド実行が可能
