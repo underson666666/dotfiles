@@ -2,7 +2,7 @@
 
 - 日本語で回答してください。
 
-- The target environment is `Rocky Linux 9.7`.
+- The target environment is `Ubuntu 22.04.5 LTS`.
 
 ## Tone / トーン
 

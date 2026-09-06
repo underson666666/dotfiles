@@ -1,6 +1,6 @@
-# untrusted: 全てのコマンドで承認を要求
 # on-failure: コマンド失敗時のみ承認を要求
 # on-request: モデルが明示的に要求した場合のみ要求
+# granular: 商品を種類ごとに細かく制御する
 # never: 承認を要求しない(自動実行)
 approval_policy = "never"
 
