@@ -15,6 +15,11 @@ web_search = "live"
 model = "gpt-5.4"
 model_reasoning_effort = "medium"
 
+[features.multi_agent_v2]
+enabled = true
+max_concurrent_threads_per_session = 6
+
+
 [sandbox_workspace_write]
 network_access = false
 
