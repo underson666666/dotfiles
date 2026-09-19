@@ -1,44 +1,40 @@
-## Response Rolicy / 応答ポリシー
+# AGENTS.md
 
-- 日本語で回答してください。
+## Project Overview
+- TypeScript + React 18 のWebアプリケーション
+- バックエンド: Node.js + Express
+- Pythonのバージョンは3.12以上を使用。
+- クラスメソッドはすべてdocstringを書くこと。
 
-- The target environment is `Ubuntu 22.04.5 LTS`.
+## Boundaries(境界・禁止事項)
+- `.env*` ファイルを変更・コミットしない
+- 本番環境の設定ファイルを変更する場合は必ず確認を求める
+- SQL生成は禁止。
 
-## Tone / トーン
+## Workflow
+- 変更前にテストを実行し、既存テストが通ることを確認する
+- コミットメッセージは Conventional Commits に従う
 
-- 優秀で知的、優しく親切な同僚のような口調で。
+## SubAgent
 
-## Git Operations Policy / Git操作ポリシー
+- メインエージェントは、作業計画、サブエージェントの起動・進捗・成果物の管理、レビュー指摘やテストNGによる工程戻りの管理、最終結果の人間への報告を担当する。
+- 調査、ファイル参照、コマンド実行、設計、実装、レビュー、テストは、必要に応じてサブエージェントへ委譲すること。メインエージェントは各結果を統合し、次の工程へ引き継ぐこと。
+- エージェント間の引き継ぎは、共有ファイルへの成果物またはメインエージェントの要約で行うこと。
+- 起動時は必ず `fork_turns: "none"` を使ってください。
+- サブエージェントの作業が完了したら、完了通知を確認した上で必ずclosesすること。
 
-- AI MUST NOT execute any git commands by default.  
-  （原則としてAIはgitコマンドを実行してはいけない）
+## SubAgentを使った開発
 
-- AI MAY execute the following safe git commands:
-  - git add
-
-  （以下の安全なコマンドのみ実行してよい：
-    - git add）
-
-- For any other git commands, AI MUST only suggest them as plain text and MUST NOT execute them.  
-  （上記以外のgitコマンドは提案のみとし、実行してはいけない）
-
-- Human is responsible for reviewing and executing all git operations.  
-  （すべてのgit操作の確認および実行は人間が責任を持つ）
-
-- For any destructive operations (e.g., force push, reset, rebase), AI MUST include a warning.  
-  （破壊的操作（例：force push、reset、rebase）については必ず警告を含めること）
-
-- AI SHOULD explain the purpose of each command briefly.  
-  （各コマンドの目的を簡潔に説明すること）
-
-
-## Command Output Guidelines / コマンド出力ガイドライン
-
-- AI SHOULD group commands into a single executable block when possible.  
-  （可能な場合、コマンドは1つの実行ブロックにまとめること）
-
-- AI SHOULD avoid unnecessary commands and keep output minimal.  
-  （不要なコマンドは避け、最小限の出力にすること）
-
-- AI SHOULD consider the user's environment (e.g., Windows + WSL2).  
-  （ユーザー環境（例：Windows + WSL2）を考慮すること）
+- 開発では、作業規模と変更リスクに応じて、次の候補から必要な役割だけを選定すること。
+  - 設計担当
+  - 開発担当
+  - レビュー担当
+  - テスト担当
+  - セキュリティ担当
+- すべてのサブエージェントを最初から起動せず、各工程で必要になったタイミングで必要な担当だけを起動すること。
+- 同時に実行可能な作業は並列化して良い。ただし、起動するサブエージェントはその時点で必要なものに限ること。
+- 小規模な修正では、設計とレビューを兼務するなど、必要最小限の構成にすること。
+- DB、認証、入力検証、権限、外部連携など、を含む変更では、セキュリティ観点のレビューを含めること。
+- テストでは、正常系だけでなく異常系のテスト項目必ず実施すること。
+- レビュー指摘による修正戻り、またはテストNGによる製造戻りが発生した場合は、修正後の再レビュー・再テストまでを1ループとして、最大5回まで対応を試みること。
+- 5回ループしても解決しない場合は、発生事象、推定原因、対応策、残存リスクを整理し、人間に判断を求めること。

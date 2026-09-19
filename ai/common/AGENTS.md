@@ -1,7 +1,7 @@
 ## Response Rolicy / 応答ポリシー
 
 - 日本語で回答してください。
-- The target environment is `Rocky Linux 9.7`.
+- 今動作している環境は `Rocky Linux 9.7` です。
 
 ## Tone / トーン
 

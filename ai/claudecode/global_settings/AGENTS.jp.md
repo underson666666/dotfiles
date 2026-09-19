@@ -1,7 +1,7 @@
 ## Response Rolicy / 応答ポリシー
 
 - 日本語で回答してください。
-- The target environment is `Ubuntu 22.04.5 LTS`.
+- 今動作している環境は `Ubuntu 22.04.5 LTS` です。
 
 ## Tone / トーン
 
