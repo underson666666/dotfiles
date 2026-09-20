@@ -28,16 +28,58 @@ try:
         bar = '▓' * filled + '░' * (10 - filled)
         return f'{label} {color(p)}{bar} {p}%{R}'
 
+    def fmt_tokens(n):
+        if n >= 1_000_000:
+            return f'{n / 1_000_000:.1f}M'
+        if n >= 1_000:
+            return f'{n / 1_000:.1f}K'
+        return str(n)
+
     NOTIFICATION_RE = re.compile(r'<task-id>(.*?)</task-id>.*?<status>(.*?)</status>', re.S)
 
-    def count_running_agents(transcript_path):
+    def get_git_branch(cwd):
+        # .gitを直接読んでブランチ名を判定する（subprocessでgitを呼ばず起動速度を優先）
+        try:
+            d = os.path.abspath(cwd)
+            while True:
+                git_path = os.path.join(d, '.git')
+                if os.path.exists(git_path):
+                    if os.path.isdir(git_path):
+                        head_path = os.path.join(git_path, 'HEAD')
+                    else:
+                        with open(git_path, 'r', encoding='utf-8') as f:
+                            content = f.read().strip()
+                        if not content.startswith('gitdir:'):
+                            return None
+                        gitdir = content[len('gitdir:'):].strip()
+                        if not os.path.isabs(gitdir):
+                            gitdir = os.path.join(d, gitdir)
+                        head_path = os.path.join(gitdir, 'HEAD')
+                    with open(head_path, 'r', encoding='utf-8') as f:
+                        head = f.read().strip()
+                    if head.startswith('ref:'):
+                        ref = head[len('ref:'):].strip()
+                        if ref.startswith('refs/heads/'):
+                            return ref[len('refs/heads/'):]
+                        return ref
+                    return head[:7]
+                parent = os.path.dirname(d)
+                if parent == d:
+                    return None
+                d = parent
+        except Exception:
+            return None
+
+    def scan_transcript(transcript_path):
         # 各agentIdの状態(running/completed)を時系列で追跡する。
         # SendMessageでresumeされたエージェントは一度completedになった後も
         # 再度runningに戻るため、launched/completedの単純な集合差分では
         # resume中の実行状態を検出できない。
+        # 併せて、最終行のtimestamp（直近リクエストの目安）も同じループで取得する。
         if not transcript_path or not os.path.isfile(transcript_path):
-            return 0
+            return 0, None
         state = {}
+        last_ts = None
         try:
             with open(transcript_path, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -48,6 +90,9 @@ try:
                         obj = json.loads(line)
                     except ValueError:
                         continue
+                    ts = obj.get('timestamp')
+                    if ts:
+                        last_ts = ts
                     tur = obj.get('toolUseResult')
                     if isinstance(tur, dict):
                         if tur.get('isAsync') and tur.get('agentId'):
@@ -60,8 +105,21 @@ try:
                             if status.strip() == 'completed':
                                 state[task_id.strip()] = 'completed'
         except OSError:
-            return 0
-        return sum(1 for v in state.values() if v == 'running')
+            return 0, None
+        running = sum(1 for v in state.values() if v == 'running')
+        return running, last_ts
+
+    def fmt_last_request(last_ts):
+        # 直前のtranscriptエントリのtimestamp（assistantなら生成完了時刻）をローカル時刻で表示するだけ。
+        # リクエスト開始時刻ではないため、TTL経過の厳密な判定には使わない目安表示。
+        if not last_ts:
+            return None
+        try:
+            from datetime import datetime
+            dt = datetime.fromisoformat(last_ts.replace('Z', '+00:00')).astimezone()
+        except ValueError:
+            return None
+        return f'resp: {dt.strftime("%H:%M:%S")}'
 
     model = data.get('model', {}).get('display_name', 'Claude')
     effort = data.get('effort', {}).get('level')
@@ -69,14 +127,7 @@ try:
         model = f'{model}({effort})'
     parts = [model]
 
-    # ディレクトリ名
-    cwd = data.get('workspace', {}).get('current_dir', '')
-    if cwd:
-        parts.append(os.path.basename(cwd))
-
-    # 現在実行中のサブエージェント数（常時表示）
-    running = count_running_agents(data.get('transcript_path'))
-    parts.append(f'agent: {running}')
+    running, last_ts = scan_transcript(data.get('transcript_path'))
 
     # コンテキスト
     pct = int(data.get('context_window', {}).get('used_percentage', 0) or 0)
@@ -94,13 +145,30 @@ try:
     cost = data.get('cost', {}).get('total_cost_usd', 0) or 0
     parts.append(f'cost ${cost:.3f}')
 
-    # 経過時間
-    dur_ms = data.get('cost', {}).get('total_duration_ms', 0) or 0
-    mins = int(dur_ms // 60000)
-    secs = int((dur_ms % 60000) // 1000)
-    parts.append(f'elapsed {mins}m{secs}s')
+    # キャッシュ使用状況
+    cur_usage = data.get('context_window', {}).get('current_usage') or {}
+    input_tok = cur_usage.get('input_tokens', 0) or 0
+    cache_read = cur_usage.get('cache_read_input_tokens', 0) or 0
+    cache_creation = cur_usage.get('cache_creation_input_tokens', 0) or 0
+    total_tok = input_tok + cache_read + cache_creation
+    hit_rate = cache_read / total_tok * 100 if total_tok > 0 else 0.0
+    parts.append(f'cache I:{fmt_tokens(input_tok)} CR:{fmt_tokens(cache_read)} CC:{fmt_tokens(cache_creation)} hit:{hit_rate:.1f}%')
 
-    print(f'{DIM}│{R}'.join(f' {p} ' for p in parts), end='')
+    last_req = fmt_last_request(last_ts)
+    if last_req:
+        parts.append(last_req)
+
+    print(f'{DIM}│{R}'.join(f' {p} ' for p in parts))
+
+    # 2行目: 実行中のサブエージェント数 + ディレクトリ名（可変長のため末尾）
+    line2 = [f'agent: {running}']
+    cwd = data.get('workspace', {}).get('current_dir', '')
+    if cwd:
+        dname = os.path.basename(cwd)
+        branch = get_git_branch(cwd)
+        dir_str = f'{dname} ({branch})' if branch else dname
+        line2.append(dir_str)
+    print(f'{DIM}│{R}'.join(f' {p} ' for p in line2), end='')
 
 except Exception:
     sys.exit(0)
