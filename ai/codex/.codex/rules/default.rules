@@ -1,0 +1,42 @@
+prefix_rule(
+    pattern = ["git", [
+        # ファイル・履歴・ブランチなどの変更
+        "am", "apply", "bisect",
+        "checkout", "cherry-pick", "clean",
+        "filter-branch", "notes",
+        "rebase", "reflog", "replace", "reset",
+        "restore", "revert", "rm", "sparse-checkout",
+        "stash", "submodule", "tag",
+
+        # リポジトリ作成・通信・設定・保守
+        "archive", "bundle", "clone", "config",
+        "credential", "credential-cache", "credential-store",
+        "daemon", "fetch", "gc", "init", "maintenance",
+        "prune", "pull", "push", "remote", "repack",
+
+        # diff・log以外の参照・調査
+        "annotate", "blame", "cat-file", "cherry",
+        "describe", "difftool", "fsck", "grep",
+        "ls-files", "ls-remote", "ls-tree", "merge-base",
+        "range-diff", "rev-list", "rev-parse", "shortlog",
+        "show", "show-branch", "show-ref",
+        "verify-commit", "verify-tag", "version", "whatchanged",
+
+        # オブジェクト・参照などを直接扱う低レベル操作
+        "checkout-index", "commit-graph", "commit-tree",
+        "fast-import", "fetch-pack", "hash-object",
+        "index-pack", "multi-pack-index", "pack-objects",
+        "pack-refs", "prune-packed", "read-tree",
+        "receive-pack", "send-pack", "symbolic-ref",
+        "unpack-objects", "update-index", "update-ref",
+        "update-server-info", "write-tree",
+    ]],
+    decision = "forbidden",
+    justification = "Git操作は原則として人間が実行します。Codexはadd, branch, commit, diff, merge, mv, switch, log, statusのみ使用してください。",
+)
+
+prefix_rule(
+    pattern = ["git", ["add", "commit", "branch", "diff", "merge", "mv", "switch", "log", "status", "worktree",]],
+    decision = "allow",
+    justification = "レビュー済みの変更を履歴に保存するため",
+)

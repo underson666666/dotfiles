@@ -12,6 +12,15 @@
 - 原則としてAIはgitコマンドを実行してはいけない
 - 以下の安全なコマンドのみ実行してよい：
     - git add
+    - git branch
+    - git commit
+    - git diff
+    - git merge
+    - git mv
+    - git switch
+    - git log
+    - git status
+- 許可対象のコマンドでも、変更の破棄や強制削除を伴うオプションは使用しないこと。
 - 上記以外のgitコマンドは提案のみとし、実行してはいけない
 - すべてのgit操作の確認および実行は人間が責任を持つ
 - 破壊的操作（例：force push、reset、rebase）については必ず警告を含めること
