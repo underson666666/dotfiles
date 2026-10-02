@@ -124,7 +124,7 @@ try:
     model = data.get('model', {}).get('display_name', 'Claude')
     effort = data.get('effort', {}).get('level')
     if effort:
-        model = f'{model}({effort})'
+        model = f'{model} {effort}'
     parts = [model]
 
     running, last_ts = scan_transcript(data.get('transcript_path'))
@@ -152,7 +152,7 @@ try:
     cache_creation = cur_usage.get('cache_creation_input_tokens', 0) or 0
     total_tok = input_tok + cache_read + cache_creation
     hit_rate = cache_read / total_tok * 100 if total_tok > 0 else 0.0
-    parts.append(f'cache I:{fmt_tokens(input_tok)} CR:{fmt_tokens(cache_read)} CC:{fmt_tokens(cache_creation)} hit:{hit_rate:.1f}%')
+    parts.append(f'cache I:{fmt_tokens(input_tok)} R:{fmt_tokens(cache_read)} C:{fmt_tokens(cache_creation)} hit:{hit_rate:.1f}%')
 
     last_req = fmt_last_request(last_ts)
     if last_req:
