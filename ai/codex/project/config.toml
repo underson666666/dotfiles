@@ -19,6 +19,3 @@ network_access = true
 inherit = "core"
 set = { TTTTT = "THIS IS CUSTOM ENV TEST" }
 
-[tools]
-view_image = true
-
