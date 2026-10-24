@@ -119,7 +119,7 @@ try:
 
     # コスト
     cost = data.get('cost', {}).get('total_cost_usd', 0) or 0
-    parts.append(f'cost ')
+    parts.append(f'cost: ${cost:.2f}')
 
     # キャッシュ状況（v2.1.251以降のprompt_cache。最初のAPIレスポンスまでは存在しない）
     pc = data.get('prompt_cache')

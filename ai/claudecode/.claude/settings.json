@@ -1,4 +1,6 @@
 {
+  "promptCacheTtl": "5m",
+  "subagentPromptCacheTtl": "5m",
   "statusLine": {
       "type": "command",
       "command": "python \"C:/Users/<ユーザー名>/.claude/statusline.py\""
