@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import json, sys, os, re
 
 try:
@@ -27,13 +28,6 @@ try:
         filled = p * 10 // 100
         bar = '▓' * filled + '░' * (10 - filled)
         return f'{label} {color(p)}{bar} {p}%{R}'
-
-    def fmt_tokens(n):
-        if n >= 1_000_000:
-            return f'{n / 1_000_000:.1f}M'
-        if n >= 1_000:
-            return f'{n / 1_000:.1f}K'
-        return str(n)
 
     NOTIFICATION_RE = re.compile(r'<task-id>(.*?)</task-id>.*?<status>(.*?)</status>', re.S)
 
@@ -75,11 +69,9 @@ try:
         # SendMessageでresumeされたエージェントは一度completedになった後も
         # 再度runningに戻るため、launched/completedの単純な集合差分では
         # resume中の実行状態を検出できない。
-        # 併せて、最終行のtimestamp（直近リクエストの目安）も同じループで取得する。
         if not transcript_path or not os.path.isfile(transcript_path):
-            return 0, None
+            return 0
         state = {}
-        last_ts = None
         try:
             with open(transcript_path, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -90,9 +82,6 @@ try:
                         obj = json.loads(line)
                     except ValueError:
                         continue
-                    ts = obj.get('timestamp')
-                    if ts:
-                        last_ts = ts
                     tur = obj.get('toolUseResult')
                     if isinstance(tur, dict):
                         if tur.get('isAsync') and tur.get('agentId'):
@@ -105,21 +94,8 @@ try:
                             if status.strip() == 'completed':
                                 state[task_id.strip()] = 'completed'
         except OSError:
-            return 0, None
-        running = sum(1 for v in state.values() if v == 'running')
-        return running, last_ts
-
-    def fmt_last_request(last_ts):
-        # 直前のtranscriptエントリのtimestamp（assistantなら生成完了時刻）をローカル時刻で表示するだけ。
-        # リクエスト開始時刻ではないため、TTL経過の厳密な判定には使わない目安表示。
-        if not last_ts:
-            return None
-        try:
-            from datetime import datetime
-            dt = datetime.fromisoformat(last_ts.replace('Z', '+00:00')).astimezone()
-        except ValueError:
-            return None
-        return f'resp: {dt.strftime("%H:%M:%S")}'
+            return 0
+        return sum(1 for v in state.values() if v == 'running')
 
     model = data.get('model', {}).get('display_name', 'Claude')
     effort = data.get('effort', {}).get('level')
@@ -127,7 +103,7 @@ try:
         model = f'{model} {effort}'
     parts = [model]
 
-    running, last_ts = scan_transcript(data.get('transcript_path'))
+    running = scan_transcript(data.get('transcript_path'))
 
     # コンテキスト
     pct = int(data.get('context_window', {}).get('used_percentage', 0) or 0)
@@ -143,20 +119,24 @@ try:
 
     # コスト
     cost = data.get('cost', {}).get('total_cost_usd', 0) or 0
-    parts.append(f'cost ${cost:.3f}')
+    parts.append(f'cost ')
 
-    # キャッシュ使用状況
-    cur_usage = data.get('context_window', {}).get('current_usage') or {}
-    input_tok = cur_usage.get('input_tokens', 0) or 0
-    cache_read = cur_usage.get('cache_read_input_tokens', 0) or 0
-    cache_creation = cur_usage.get('cache_creation_input_tokens', 0) or 0
-    total_tok = input_tok + cache_read + cache_creation
-    hit_rate = cache_read / total_tok * 100 if total_tok > 0 else 0.0
-    parts.append(f'cache I:{fmt_tokens(input_tok)} R:{fmt_tokens(cache_read)} C:{fmt_tokens(cache_creation)} hit:{hit_rate:.1f}%')
-
-    last_req = fmt_last_request(last_ts)
-    if last_req:
-        parts.append(last_req)
+    # キャッシュ状況（v2.1.251以降のprompt_cache。最初のAPIレスポンスまでは存在しない）
+    pc = data.get('prompt_cache')
+    if pc:
+        ttl = pc.get('ttl') or '-'
+        hit_ratio = pc.get('hit_ratio')
+        hit_str = f'{hit_ratio * 100:.1f}%' if hit_ratio is not None else '-'
+        # expires_atはepoch秒。直近レスポンスにキャッシュトークンが無いとnull
+        expires_at = pc.get('expires_at')
+        if expires_at is not None:
+            from datetime import datetime
+            exp_str = datetime.fromtimestamp(expires_at).strftime('%H:%M:%S')
+        else:
+            exp_str = 'cold'
+        if not pc.get('warm'):
+            exp_str = f'{RED}{exp_str}{R}'
+        parts.append(f'cache ttl:{ttl} hit:{hit_str} exp:{exp_str}')
 
     print(f'{DIM}│{R}'.join(f' {p} ' for p in parts))
 
