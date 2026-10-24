@@ -16,6 +16,51 @@ ROOT = HOOK_DIR.parent.parent
 MAX_FAILURES = 5
 PYTEST_TIMEOUT = 120
 OUTPUT_LIMIT = 12000
+STATE_RETENTION_DAYS = 30
+
+
+def cleanup_old_sessions(current):
+    """Best-effort cleanup; only known files in unlocked, stale sessions."""
+    base = HOOK_DIR / ".state"
+    cutoff = time.time() - STATE_RETENTION_DAYS * 86400
+    if base.is_symlink():
+        return
+    try:
+        directories = list(base.iterdir())
+    except OSError:
+        return
+    for directory in directories:
+        if (directory == current or len(directory.name) != 64
+                or any(c not in "0123456789abcdef" for c in directory.name)):
+            continue
+        acquired = False
+        lock = directory / "lock"
+        try:
+            if directory.is_symlink() or not directory.is_dir():
+                continue
+            # Creating the lock changes directory mtime, so remember it first.
+            modified = directory.stat().st_mtime
+            if modified >= cutoff:
+                continue
+            lock.mkdir()
+            acquired = True
+            files = [p for p in directory.iterdir() if p.name != "lock"]
+            if any(p.name not in {"state.json", "state.tmp", "last-output.txt", "last-used"}
+                   or p.is_symlink() or not p.is_file() for p in files):
+                continue
+            if max([modified] + [p.stat().st_mtime for p in files]) >= cutoff:
+                continue
+            for path in files:
+                path.unlink()
+        except OSError:
+            continue
+        finally:
+            if acquired:
+                try:
+                    lock.rmdir()
+                    directory.rmdir()  # Only succeeds if still empty.
+                except OSError:
+                    pass
 
 
 def changed_python(status):
@@ -90,13 +135,17 @@ def check(session_id, human_required=False, retry=False):
     deadline = time.monotonic() + 5
     while True:
         try:
+            # A cleaner may have removed this directory while we waited.
+            directory.mkdir(mode=0o700, parents=True, exist_ok=True)
             lock.mkdir()
             break
-        except FileExistsError:
+        except (FileExistsError, FileNotFoundError):
             if time.monotonic() >= deadline:
                 raise RuntimeError(f"チェックが実行中かロックが残っています: {lock}")
             time.sleep(0.1)
     try:
+        (directory / "last-used").touch()
+        cleanup_old_sessions(directory)
         path = directory / "state.json"
         state = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"failures": 0}
         failures = state["failures"]
