@@ -40,3 +40,12 @@ prefix_rule(
     decision = "allow",
     justification = "レビュー済みの変更を履歴に保存するため",
 )
+
+prefix_rule(
+    pattern = ["rm", ["-fr", "-rf"]], decision = "forbidden",
+    justification = "再起的な強制削除は禁止",
+)
+
+prefix_rule(pattern = ["sudo"], decision = "forbidden")
+prefix_rule(pattern = ["dd"], decision = "forbidden")
+prefix_rule(pattern = ["mkfs"], decision = "forbidden")

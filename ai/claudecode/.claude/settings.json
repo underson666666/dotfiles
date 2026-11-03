@@ -19,6 +19,16 @@
       "Bash(git worktree *)"
     ],
     "deny": [
+      "Bash(rm -fr *)",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(dd *)",
+      "Bash(mkfs *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./ssh/**)",
+
       "Bash(git am *)",
       "Bash(git apply *)",
       "Bash(git bisect *)",
