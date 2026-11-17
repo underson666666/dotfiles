@@ -29,6 +29,7 @@ inherit = "core"
 [tui]
 status_line = ["model-with-reasoning", "run-state", "permissions", "approval-mode", "context-remaining", "five-hour-limit", "weekly-limit", "task-progress", "project-name", "estimated-thread-cost"]
 status_line_use_colors = true
+alternate_screen = "never"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
